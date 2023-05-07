@@ -6,7 +6,7 @@ import Renkler from "./constants/Renkler";
 export default function App() {
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <SafeAreaView style={styles.container}>
         <CategoriesScreen />
       </SafeAreaView>
