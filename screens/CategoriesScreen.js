@@ -4,7 +4,7 @@ import { CATEGORIES } from "../data/dummy-data";
 import Renkler from "../constants/Renkler";
 import CategoryCard from "../components/CategoryCard";
 
-const CategoriesScreen = () => {
+const CategoriesScreen = (props) => {
   return (
     <FlatList
       horizontal={false}
@@ -15,7 +15,7 @@ const CategoriesScreen = () => {
       renderItem={(itemData) => (
         <CategoryCard
           onPress={() => {
-            console.log("bastın");
+            props.navigation.navigate("Meals");
           }}
           itemColor={itemData.item.color}
         >
