@@ -16,33 +16,33 @@ const MealItem = (props) => {
   return (
     <>
       <TouchableOpacity onPress={props.onPress}>
-        <View style={styles.mainContainer}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: props.image,
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>{props.children}</Text>
-            <View style={styles.detaylar}>
-              <Text style={styles.detay}>
-                Affordability {"\n"}
-                {props.affordability.toUpperCase()}
-              </Text>
-              <Text style={styles.detay}>
-                Complexity {"\n"}
-                {props.complexity.toUpperCase()}
-              </Text>
-              <Text style={styles.detay}>
-                Duration {"\n"}
-                {props.duration}
-                {" min"}
-              </Text>
+        <View style={styles.forshadow}>
+          <View style={styles.mainContainer}>
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: props.image,
+                }}
+              />
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>{props.children}</Text>
+              <View style={styles.detaylar}>
+                <Text style={styles.detay}>
+                  Affordability {"\n"}
+                  {props.affordability.toUpperCase()}
+                </Text>
+                <Text style={styles.detay}>
+                  Complexity {"\n"}
+                  {props.complexity.toUpperCase()}
+                </Text>
+                <Text style={styles.detay}>
+                  Duration {"\n"}
+                  {props.duration}
+                  {" min"}
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     paddingBottom: 20,
     borderRadius: 25,
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 1, height: 1 },
+
+    overflow: "hidden",
   },
   imageContainer: {
     width: deviceWidth * 0.95,
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   image: {
-    borderTopLeftRadius: 25,
-    borderTopEndRadius: 25,
+    width: "100%",
+    height: "100%",
   },
   text: {
     textAlign: "center",
@@ -95,5 +95,9 @@ const styles = StyleSheet.create({
   detay: {
     textAlign: "center",
     flex: 1,
+  },
+  forshadow: {
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 1, height: 1 },
   },
 });

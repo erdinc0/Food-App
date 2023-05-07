@@ -5,6 +5,7 @@ import Renkler from "./constants/Renkler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
+import MealScreen from "./screens/MealScreen";
 
 let Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ export default function App() {
         >
           <Stack.Screen name="Categories" component={CategoriesScreen} />
           <Stack.Screen name="Meals" component={MealsOverviewScreen} />
+          <Stack.Screen name="MealScreen" component={MealScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

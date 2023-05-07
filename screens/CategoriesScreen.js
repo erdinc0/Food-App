@@ -1,10 +1,24 @@
 import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { CATEGORIES } from "../data/dummy-data";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { CATEGORIES, MEALS } from "../data/dummy-data";
 import Renkler from "../constants/Renkler";
 import CategoryCard from "../components/CategoryCard";
 
 const CategoriesScreen = (props) => {
+  let [fotos, setfotos] = useState([]);
+
+  useLayoutEffect(() => {
+    let urls = [];
+    let url = "";
+
+    MEALS.map((itemData) => {
+      url = itemData.imageUrl;
+      urls.push(url);
+    });
+
+    setfotos(urls);
+  }, []);
+
   return (
     <FlatList
       horizontal={false}
@@ -18,9 +32,11 @@ const CategoriesScreen = (props) => {
             props.navigation.navigate("Meals", {
               itemId: itemData.item.id,
               categoryTitle: itemData.item.title,
+              imageUrl: fotos[itemData.index],
             });
           }}
           itemColor={itemData.item.color}
+          imageUrl={fotos[itemData.index]}
         >
           {itemData.item.title}
         </CategoryCard>
@@ -38,6 +54,8 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
+    marginTop: 10,
+    paddingBottom: 30,
   },
   FlatList: {
     width: "100%",

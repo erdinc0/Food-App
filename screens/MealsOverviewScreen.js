@@ -34,7 +34,12 @@ const MealsOverviewScreen = (props) => {
         renderItem={(displayedMealItem) => (
           <>
             <MealItem
-              onPress={() => {}}
+              onPress={() => {
+                navigasyon.navigate("MealScreen", {
+                  mealId: displayedMealItem.item.id,
+                  mealTitle: displayedMealItem.item.title,
+                });
+              }}
               image={displayedMealItem.item.imageUrl}
               affordability={displayedMealItem.item.affordability}
               complexity={displayedMealItem.item.complexity}
