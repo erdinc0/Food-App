@@ -6,6 +6,7 @@ const Renkler = {
   fontSize: 18,
   white: "white",
   bgWhite: "#f0f0f0",
+  gri: "#686868",
 };
 
 export default Renkler;

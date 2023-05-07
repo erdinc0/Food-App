@@ -16,11 +16,7 @@ const CategoryCard = (props) => {
     <TouchableOpacity onPress={props.onPress}>
       <View style={styles.forshadow}>
         <View style={styles.bgimageContainer}>
-          <Image
-            blurRadius={5}
-            source={{ uri: props.imageUrl }}
-            style={styles.bgimage}
-          />
+          <Image source={{ uri: props.imageUrl }} style={styles.bgimage} />
           <Text style={[styles.text]}>{props.children}</Text>
         </View>
       </View>

@@ -9,6 +9,7 @@ import {
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Renkler from "../constants/Renkler";
+import Detaylar from "./Detaylar";
 
 let deviceWidth = Dimensions.get("window").width;
 
@@ -28,22 +29,12 @@ const MealItem = (props) => {
             </View>
             <View style={styles.textContainer}>
               <Text style={styles.text}>{props.children}</Text>
-              <View style={styles.detaylar}>
-                <Text style={styles.detay}>
-                  Affordability {"\n"}
-                  {props.affordability.toUpperCase()}
-                </Text>
-                <Text style={styles.detay}>
-                  Complexity {"\n"}
-                  {props.complexity.toUpperCase()}
-                </Text>
-                <Text style={styles.detay}>
-                  Duration {"\n"}
-                  {props.duration}
-                  {" min"}
-                </Text>
-              </View>
             </View>
+            <Detaylar
+              affordability={props.affordability}
+              complexity={props.complexity}
+              duration={props.duration}
+            ></Detaylar>
           </View>
         </View>
       </TouchableOpacity>
@@ -68,7 +59,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   imageContainer: {
-    width: deviceWidth * 0.95,
+    width: "100%",
     height: 175,
     alignSelf: "center",
   },
@@ -78,24 +69,16 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
-    width: "80%",
     color: "black",
-    fontSize: Renkler.fontSize,
+    fontSize: 24,
     fontWeight: Renkler.fontWeight,
     marginTop: 15,
   },
   textContainer: {
     alignItems: "center",
+    width: "80%",
   },
-  detaylar: {
-    flexDirection: "row",
-    marginTop: 10,
-    width: "100%",
-  },
-  detay: {
-    textAlign: "center",
-    flex: 1,
-  },
+
   forshadow: {
     shadowOpacity: 0.3,
     shadowOffset: { width: 1, height: 1 },

@@ -6,12 +6,15 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { MEALS } from "../data/dummy-data";
 import { StatusBar } from "expo-status-bar";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Renkler from "../constants/Renkler";
+import Detaylar from "../components/Detaylar";
 
 let deviceWidth = Dimensions.get("screen").width;
 
@@ -30,34 +33,48 @@ const MealScreen = (props) => {
     return mealItem.id == route.params.mealId;
   });
 
+  let mealInfoo = MEALS.find((mealItem) => mealItem.id === route.params.mealId);
+
   return (
     <>
       <StatusBar style="light" />
-      <FlatList
-        data={mealInfo}
-        renderItem={(mealInfoItem) => (
-          <>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={{
-                  uri: mealInfoItem.item.imageUrl,
-                }}
-              />
-              <TouchableOpacity
-                style={styles.goback}
-                onPress={() => navigasyon.goBack()}
-              >
-                <Ionicons name="ios-arrow-back" size={24} color="green" />
-              </TouchableOpacity>
-            </View>
+
+      <View>
+        <View>
+          <View style={styles.imageContainer}>
             <View style={styles.titleContainer}>
-              <Text style={styles.title}>{mealInfoItem.item.title}</Text>
+              <Text style={styles.title}>{mealInfoo.title}</Text>
             </View>
-          </>
-        )}
-        keyExtractor={(item) => item.id}
-      />
+            <Image
+              style={styles.image}
+              source={{
+                uri: mealInfoo.imageUrl,
+              }}
+            />
+            <TouchableOpacity
+              style={styles.goback}
+              onPress={() => navigasyon.goBack()}
+            >
+              <Ionicons name="ios-arrow-back" size={24} color="green" />
+            </TouchableOpacity>
+          </View>
+          <Detaylar
+            affordability={mealInfoo.affordability}
+            complexity={mealInfoo.complexity}
+            duration={mealInfoo.duration}
+            style={styles.detaylar}
+          ></Detaylar>
+        </View>
+        <View style={styles.scrollContainer}>
+          <ScrollView>
+            <View style={styles.icerik}>
+              <View style={styles.baslik}>
+                <Text style={styles.baslikText}>İÇİNDEKİLER</Text>
+              </View>
+            </View>
+          </ScrollView>
+        </View>
+      </View>
     </>
   );
 };
@@ -78,17 +95,19 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: "bold",
+    color: Renkler.white,
+
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.75,
   },
   titleContainer: {
-    marginTop: 20,
-
-    borderBottomColor: "green",
-    borderBottomWidth: 2,
     width: deviceWidth * 0.8,
+    position: "absolute",
+    zIndex: 1,
     alignSelf: "center",
-    paddingBottom: deviceWidth * 0.05,
+    top: deviceWidth * 0.45,
   },
   goback: {
     position: "absolute",
@@ -102,5 +121,26 @@ const styles = StyleSheet.create({
     borderRadius: 200,
     shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.25,
+  },
+  detaylar: {
+    borderBottomColor: "green",
+    borderBottomWidth: 1,
+    paddingBottom: deviceWidth * 0.05,
+    width: "90%",
+    alignSelf: "center",
+  },
+  icerik: {
+    alignItems: "center",
+    marginTop: deviceWidth * 0.05,
+  },
+  baslik: {
+    borderBottomWidth: 1,
+    paddingBottom: deviceWidth * 0.025,
+  },
+  baslikText: {
+    fontSize: 20,
+  },
+  scrollContainer: {
+    height: "100%",
   },
 });
