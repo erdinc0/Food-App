@@ -15,7 +15,10 @@ const CategoriesScreen = (props) => {
       renderItem={(itemData) => (
         <CategoryCard
           onPress={() => {
-            props.navigation.navigate("Meals");
+            props.navigation.navigate("Meals", {
+              itemId: itemData.item.id,
+              categoryTitle: itemData.item.title,
+            });
           }}
           itemColor={itemData.item.color}
         >
@@ -31,10 +34,12 @@ export default CategoriesScreen;
 
 const styles = StyleSheet.create({
   scroll: {
-    backgroundColor: Renkler.bgColor,
+    backgroundColor: Renkler.bgWhite,
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  FlatList: { width: "100%" },
+  FlatList: {
+    width: "100%",
+  },
 });
