@@ -119,8 +119,8 @@ const styles = StyleSheet.create({
     top: deviceWidth < 380 ? 40 : 65,
     left: deviceWidth < 380 ? 25 : 30,
     backgroundColor: "white",
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 200,
@@ -131,10 +131,11 @@ const styles = StyleSheet.create({
     paddingBottom: deviceWidth * 0.05,
     width: "100%",
     alignSelf: "center",
-
     backgroundColor: Renkler.bgWhite,
     borderBottomEndRadius: 40,
     borderBottomLeftRadius: 40,
+    borderBottomWidth: 1,
+    borderColor: "lightgrey",
   },
   icerik: {
     alignItems: "center",
