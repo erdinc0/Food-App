@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "300",
     textAlign: "center",
+    paddingVertical: 10,
   },
   ingredient: {
     backgroundColor: "white",
@@ -34,10 +35,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.15,
     justifyContent: "center",
+    elevation: 2,
   },
   mainContainer: {
     paddingTop: 15,
     width: "80%",
   },
-  touch: { height: 80 },
+  touch: {},
 });

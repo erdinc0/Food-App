@@ -54,6 +54,10 @@ const MealScreen = (props) => {
             >
               <Ionicons name="ios-arrow-back" size={24} color="green" />
             </TouchableOpacity>
+
+            <TouchableOpacity style={styles.addFav} onPress={() => {}}>
+              <Ionicons name="ios-heart-outline" size={24} color="green" />
+            </TouchableOpacity>
           </View>
           <Detaylar
             affordability={mealInfoo.affordability}
@@ -126,6 +130,20 @@ const styles = StyleSheet.create({
     borderRadius: 200,
     shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.25,
+  },
+  addFav: {
+    position: "absolute",
+    alignSelf: "flex-end",
+    backgroundColor: "white",
+    height: 40,
+    width: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 200,
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 0.25,
+    top: deviceWidth < 380 ? 40 : 65,
+    right: deviceWidth < 380 ? 25 : 30,
   },
   detaylar: {
     paddingBottom: deviceWidth * 0.05,
