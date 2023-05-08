@@ -15,6 +15,7 @@ import { StatusBar } from "expo-status-bar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Renkler from "../constants/Renkler";
 import Detaylar from "../components/Detaylar";
+import IcindekilerItem from "../components/IcindekilerItem";
 
 let deviceWidth = Dimensions.get("screen").width;
 
@@ -28,10 +29,6 @@ const MealScreen = (props) => {
   }, []);
 
   let route = useRoute();
-
-  let mealInfo = MEALS.filter((mealItem) => {
-    return mealItem.id == route.params.mealId;
-  });
 
   let mealInfoo = MEALS.find((mealItem) => mealItem.id === route.params.mealId);
 
@@ -65,15 +62,23 @@ const MealScreen = (props) => {
             style={styles.detaylar}
           ></Detaylar>
         </View>
-        <View style={styles.scrollContainer}>
-          <ScrollView>
-            <View style={styles.icerik}>
-              <View style={styles.baslik}>
-                <Text style={styles.baslikText}>İÇİNDEKİLER</Text>
-              </View>
+      </View>
+      <View style={styles.scrollContainer}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.scroll}>
+          <View style={styles.icerik}>
+            <View style={styles.baslik}>
+              <Text style={styles.baslikText}>İÇİNDEKİLER</Text>
             </View>
-          </ScrollView>
-        </View>
+
+            <IcindekilerItem>{mealInfoo.ingredients}</IcindekilerItem>
+
+            <View style={styles.baslik}>
+              <Text style={styles.baslikText}>HAZIRLANIŞI</Text>
+            </View>
+
+            <IcindekilerItem>{mealInfoo.steps}</IcindekilerItem>
+          </View>
+        </ScrollView>
       </View>
     </>
   );
@@ -123,24 +128,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
   },
   detaylar: {
-    borderBottomColor: "green",
-    borderBottomWidth: 1,
     paddingBottom: deviceWidth * 0.05,
-    width: "90%",
+    width: "100%",
     alignSelf: "center",
+
+    backgroundColor: Renkler.bgWhite,
+    borderBottomEndRadius: 40,
+    borderBottomLeftRadius: 40,
   },
   icerik: {
     alignItems: "center",
-    marginTop: deviceWidth * 0.05,
   },
   baslik: {
+    marginTop: 20,
     borderBottomWidth: 1,
     paddingBottom: deviceWidth * 0.025,
   },
   baslikText: {
     fontSize: 20,
   },
-  scrollContainer: {
-    height: "100%",
-  },
+  scrollContainer: { flex: 1 },
+  scroll: { paddingBottom: 30 },
 });
