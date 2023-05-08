@@ -3,9 +3,19 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 import Renkler from "../constants/Renkler";
 import CategoryCard from "../components/CategoryCard";
+import { useNavigation } from "@react-navigation/native";
 
 const CategoriesScreen = (props) => {
   let [fotos, setfotos] = useState([]);
+
+  let navigasyon = useNavigation();
+
+  useEffect(() => {
+    navigasyon.setOptions({
+      headerShown: true,
+      headerTitle: "All Categories",
+    });
+  }, []);
 
   useLayoutEffect(() => {
     let urls = [];

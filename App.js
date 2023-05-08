@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import CategoriesScreen from "./screens/CategoriesScreen";
 import Renkler from "./constants/Renkler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealScreen from "./screens/MealScreen";
+import BottomTabNavigator from "./screens/BottomTabNavigator";
 
 let Stack = createNativeStackNavigator();
 
@@ -17,11 +17,17 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerTitle: "Categories",
+            headerTitle: "All Categories",
             headerTintColor: Renkler.accentColor,
           }}
         >
-          <Stack.Screen name="Categories" component={CategoriesScreen} />
+          <Stack.Screen
+            name="BottomTabNavigator"
+            component={BottomTabNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen name="Meals" component={MealsOverviewScreen} />
           <Stack.Screen name="MealScreen" component={MealScreen} />
         </Stack.Navigator>

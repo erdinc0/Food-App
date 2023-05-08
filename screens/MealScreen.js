@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 40,
     borderBottomWidth: 1,
     borderColor: "lightgrey",
+    paddingTop: 10,
   },
   icerik: {
     alignItems: "center",
