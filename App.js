@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealScreen from "./screens/MealScreen";
 import BottomTabNavigator from "./screens/BottomTabNavigator";
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
 
 let Stack = createNativeStackNavigator();
 
@@ -13,25 +15,26 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerTitle: "All Categories",
-            headerTintColor: Renkler.accentColor,
-          }}
-        >
-          <Stack.Screen
-            name="BottomTabNavigator"
-            component={BottomTabNavigator}
-            options={{
-              headerShown: false,
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerTitle: "All Categories",
+              headerTintColor: Renkler.accentColor,
             }}
-          />
-          <Stack.Screen name="Meals" component={MealsOverviewScreen} />
-          <Stack.Screen name="MealScreen" component={MealScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="BottomTabNavigator"
+              component={BottomTabNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen name="Meals" component={MealsOverviewScreen} />
+            <Stack.Screen name="MealScreen" component={MealScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     </>
   );
 }

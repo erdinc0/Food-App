@@ -16,6 +16,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Renkler from "../constants/Renkler";
 import Detaylar from "../components/Detaylar";
 import IcindekilerItem from "../components/IcindekilerItem";
+import { useSelector, useDispatch } from "react-redux";
+import { addFavorite, removeFavorite } from "../store/redux/favorites";
 
 let deviceWidth = Dimensions.get("screen").width;
 
@@ -30,7 +32,23 @@ const MealScreen = (props) => {
 
   let route = useRoute();
 
-  let mealInfoo = MEALS.find((mealItem) => mealItem.id === route.params.mealId);
+  let mealId = route.params.mealId;
+
+  let mealInfoo = MEALS.find((mealItem) => mealItem.id === mealId);
+
+  let favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
+  let mealIsFavorite = favoriteMealIds.includes(mealId);
+  let dispatch = useDispatch();
+
+  let favoriHandler = () => {
+    if (mealIsFavorite) {
+      console.log("remove");
+      dispatch(removeFavorite({ id: mealId }));
+    } else {
+      console.log("add");
+      dispatch(addFavorite({ id: mealId }));
+    }
+  };
 
   return (
     <>
@@ -55,8 +73,19 @@ const MealScreen = (props) => {
               <Ionicons name="ios-arrow-back" size={24} color="green" />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.addFav} onPress={() => {}}>
-              <Ionicons name="ios-heart-outline" size={24} color="green" />
+            <TouchableOpacity
+              style={styles.addFav}
+              onPress={() => {
+                favoriHandler();
+              }}
+            >
+              <Ionicons
+                name={
+                  mealIsFavorite === true ? "ios-heart" : "ios-heart-outline"
+                }
+                size={24}
+                color="green"
+              />
             </TouchableOpacity>
           </View>
           <Detaylar
